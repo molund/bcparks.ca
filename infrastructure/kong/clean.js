@@ -34,7 +34,6 @@ Object.keys(paths).forEach((item) => {
 });
 
 delete data.tags;
-data.components.schemas.Website.properties.homepage.properties.data.properties.attributes.properties.Content.type = "object";
 data.info.title = "BCPARKS";
 data.servers[0].url = "https://bcparks.api.gov.bc.ca/api";
 data.servers[0].description = "BC Parks API";
