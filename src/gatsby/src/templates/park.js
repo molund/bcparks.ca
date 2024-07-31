@@ -63,7 +63,7 @@ export default function ParkTemplate({ data }) {
     park.parkActivities.filter(
       activity => activity.isActive && activity.activityType?.isActive
     ),
-    ["activityType.rank", "activityType.activityName"],
+    [(activity => +activity.activityType.rank || Number.MAX_VALUE), "activityType.activityName"],
     ["asc"]
   )
 

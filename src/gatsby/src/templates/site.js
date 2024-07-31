@@ -46,7 +46,7 @@ export default function SiteTemplate({ data }) {
     site.parkActivities.filter(
       activity => activity.isActive && activity.activityType?.isActive
     ),
-    ["activityType.rank", "activityType.activityName"],
+    [(activity => +activity.activityType.rank || Number.MAX_VALUE), "activityType.activityName"],
     ["asc"]
   )
 

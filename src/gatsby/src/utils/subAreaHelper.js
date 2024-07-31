@@ -1,4 +1,5 @@
 import { processDateRanges, groupSubAreaDates } from "./parkDatesHelper"
+import { sortBy } from "lodash"
 
 
 const preProcessSubAreas = (subAreas) => {
@@ -67,7 +68,12 @@ const combineCampingTypes = (parkCampingTypes, campingTypes, subAreas) => {
     }
   }
 
-  return arr.sort((a, b) => a.campingType.campingTypeName.localeCompare(b.campingType.campingTypeName))
+  // sort first by rank, then by name
+  return sortBy(
+    arr,
+    [(camping => +camping.campingType.rank || Number.MAX_VALUE), "campingType.campingTypeName"],
+    ["asc"]
+  );
 }
 
 const combineFacilities = (parkFacilities, facilityTypes, subAreas) => {
@@ -96,7 +102,12 @@ const combineFacilities = (parkFacilities, facilityTypes, subAreas) => {
     }
   }
 
-  return arr.sort((a, b) => a.facilityType.facilityName.localeCompare(b.facilityType.facilityName))
+  // sort first by rank, then by name
+  return sortBy(
+    arr,
+    [(facility => +facility.facilityType.rank || Number.MAX_VALUE), "facilityType.facilityTypeName"],
+    ["asc"]
+  );
 }
 
 export {
